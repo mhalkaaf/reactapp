@@ -7,3 +7,15 @@ before_install:
 
 script:
   - docker run -e CI=true mhalkaaf/reactapp npm run test
+
+deploy:
+  provider: elasticbeanstalk
+  region: "ap-southeast-1"
+  app: "reactapp"
+  env: "Reactapp-env"
+  bucket_name: "elasticbeanstalk-ap-southeast-1-101071463254"
+  bucket_path: "reactapp"
+  on: 
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
